@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicine Reminder</title>
+</head>
+<body>
+    <h1>Medicine Reminder Setup</h1>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <label for="image">Upload Image:</label>
+        <input type="file" id="image" name="image" accept="image/*" required>
+        <button type="submit">Submit</button>
+    </form>
+    <p id="status"></p>
+
+    <script>
+        const form = document.querySelector('form');
+        const status = document.getElementById('status');
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            const formData = new FormData(form);
+
+            fetch('/upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(text => {
+                status.textContent = text;
+            })
+            .catch(error => {
+                status.textContent = 'Error: ${error}';
+            });
+        });
+    </script>
+</body>
+</html>

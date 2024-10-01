@@ -1,0 +1,233 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Navbar */
+.navbar {
+    display: flex;
+    height: 60px;
+    justify-content: space-around;
+    background-color: #0b0662;
+    padding: 15px;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.navbar li,h1 {
+    list-style: none;
+    margin: 30px;
+    color: #f4f4f4;
+}
+.navbar h1{
+    position: relative;
+   right: 510px;
+   font-family:Georgia, 'Times New Roman', Times, serif;
+}
+.navbar a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.navbar a:hover {
+    color: #ffa500;
+}
+
+/* Hero Image */
+.hero-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin-top: 20px;
+    position: relative;
+    top: 80px;
+   
+    
+}
+
+/* Features Section */
+.features-section >a{
+    width: 20%;
+    padding: 20px;
+    text-align: center;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    text-decoration: none;
+
+}
+.features-section {
+    display: flex;
+    justify-content: space-around;
+    margin: 50px 20px;
+}
+
+/* .feature-box {
+    width: 20%;
+    padding: 20px;
+    text-align: center;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+} */
+
+.fbox0{
+    background-color: pink;
+    border: 3px solid rgb(248, 150, 166);
+}
+
+.fbox1{
+    background-color: lightblue;
+    border: 3px solid rgb(9, 190, 250);
+}
+
+.fbox2{
+    background-color: rgb(173, 237, 173);
+    border: 3px solid rgb(81, 245, 81);
+}
+.fbox3{
+    background-color: rgb(243, 245, 150);
+    border: 3px solid rgb(236, 242, 58);
+}
+
+.fbox0 {
+    background-color: pink;
+    border: 3px solid rgb(248, 150, 166);
+    transition: box-shadow 0.3s ease; /* Smooth transition */
+}
+
+.fbox0:hover {
+    box-shadow: 0 0 15px 5px rgba(248, 150, 166, 0.7); /* Pink glow effect */
+}
+
+.fbox1 {
+    background-color: lightblue;
+    border: 3px solid rgb(9, 190, 250);
+    transition: box-shadow 0.3s ease; /* Smooth transition */
+}
+
+.fbox1:hover {
+    box-shadow: 0 0 15px 5px rgba(9, 190, 250, 0.7); /* Light blue glow effect */
+}
+
+.fbox2 {
+    background-color: rgb(173, 237, 173);
+    border: 3px solid rgb(81, 245, 81);
+    transition: box-shadow 0.3s ease; /* Smooth transition */
+}
+
+.fbox2:hover {
+    box-shadow: 0 0 15px 5px rgba(81, 245, 81, 0.7); /* Green glow effect */
+}
+
+.fbox3 {
+    background-color: rgb(243, 245, 150);
+    border: 3px solid rgb(236, 242, 58);
+    transition: box-shadow 0.3s ease; /* Smooth transition */
+}
+
+.fbox3:hover {
+    box-shadow: 0 0 15px 5px rgba(236, 242, 58, 0.7); /* Yellow glow effect */
+}
+
+.feature-box h2 {
+    margin-bottom: 10px;
+}
+
+.feature-box p {
+    font-size: 16px;
+    color: #333;
+}
+/* Hero Image with White Overlay and Blur */
+.hero-image {
+    position: relative;
+    width: 100%;
+    height: 400px; /* Set the height of the hero section */
+    overflow: hidden;
+}
+/* Hero Image with Background Image, White Overlay, and Blur */
+/* Hero Image with Background Image */
+.hero-image {
+    position: relative;
+    width: 100%;
+    height: 400px; /* Set the height of the hero section */
+    background-image: url('doctorsimg.jpg'); /* Apply the background image */
+    background-size: cover; /* Ensures the image covers the section properly */
+    background-position: center;
+}
+
+/* White semi-transparent overlay */
+.hero-image::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.3); /* White semi-transparent overlay */
+    z-index: 1;
+}
+
+/* Tagline box in the center of the hero image */
+#tagline {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the box */
+    background-color: rgba(255, 255, 255, 0.7); /* Slightly transparent white background */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Light shadow */
+    font-size: 2rem;
+    font-weight: bold;
+    z-index: 2; /* Make sure the tagline is above the image and overlay */
+    text-align: center;
+    color: #333; /* Text color */
+}
+
+/* Basic styling for your form */
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+label, input, textarea {
+    display: block;
+    margin: 10px 0;
+}
+
+button {
+    padding: 10px 15px;
+}
+
+a#downloadLink {
+    display: none;
+    margin-top: 20px;
+    color: blue;
+    text-decoration: underline;
+}
+.conatinerforimg{
+    height: 500px;
+    width: 800px;
+    border: 2px solid black;
+
+
+}
+.docimg{
+    height: 300px;
+    width: 500px;
+}
+
+
+.logo{
+    height: 55px;
+    width: 55px;
+    background-image: url("doctify.jpeg");
+    background-size: cover;
+    border-radius: 50%;
+    position: relative;
+    right: 500px;
+}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Summary</title>
+</head>
+<body>
+    <h1>Upload MP3 and Get Summary</h1>
+    <form id="upload-form" action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="audio_file" accept=".mp3" required>
+        <button type="submit">Upload and Summarize</button>
+    </form>
+    <h2>Summary:</h2>
+    <p id="summary"></p>
+
+    <script>
+        const form = document.getElementById('upload-form');
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const formData = new FormData(form);
+            const response = await fetch('/upload', {
+                method: 'POST',
+                body: formData
+            });
+            const result = await response.json();
+            document.getElementById('summary').innerText = result.summary;
+        });
+    </script>
+</body>
+</html>

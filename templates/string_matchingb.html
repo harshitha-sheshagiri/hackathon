@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prescription Matcher</title>
+    <link rel="stylesheet" href="ocr.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Prescription Matcher</h1>
+        <form id="uploadForm" enctype="multipart/form-data">
+            <input type="file" id="image" name="image" accept="image/*" required>
+            <button class="upload" type="submit">Upload Image</button>
+        </form>
+        <div id="result">
+            <h2>Results</h2>
+            <img id="uploadedImage" src="" alt="Uploaded Image" style="display: none;">
+            <p id="textOutput"></p>
+            <p id="matchOutput"></p>
+            <p id="scoreOutput"></p>
+        </div>
+    </div>
+    <style>
+        /* Reset some default browser styles */
+body, h1, h2, p, button, input {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+    line-height: 1.6;
+    position: relative;
+    background-image: url("body_bg.png"); /* Your background image */
+    background-size: cover; /* Make sure the image covers the full background */
+    background-position: center;
+    background-repeat: no-repeat;
+    min-height: 100vh; /* Ensure the background covers the entire viewport */
+    overflow: hidden;
+}
+
+/* Create a white blurred overlay */
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.6); /* White overlay with slight opacity */
+    backdrop-filter: blur(8px); /* Blur effect */
+    z-index: -1; /* Keep it behind the content */
+}
+
+
+
+.container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    color: #398ee9;
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+input[type="file"] {
+    margin-bottom: 20px;
+}
+
+button {
+    background-color: #4a96e8;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+#result {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+#uploadedImage {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+p {
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+#textOutput, #matchOutput, #scoreOutput {
+    background-color: #e9ecef;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+#textOutput {
+    border-left: 5px solid #28a745;
+}
+
+#matchOutput {
+    border-left: 5px solid #17a2b8;
+}
+
+#scoreOutput {
+    border-left: 5px solid #ffc107;
+}
+
+/* Modal styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Could be more or less, depending on screen size */
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer; 
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+    </style>
+    <script>
+        document.getElementById('uploadForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const formData = new FormData(this);
+            fetch('/upload', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('textOutput').textContent = `Extracted Text: ${data.text}`;
+                document.getElementById('matchOutput').textContent = `Best Match: ${data.best_match}`;
+                document.getElementById('scoreOutput').textContent = `Score: ${data.score}`;
+                const img = document.getElementById('uploadedImage');
+                img.src = data.image_url;
+                img.style.display = 'block';
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>
